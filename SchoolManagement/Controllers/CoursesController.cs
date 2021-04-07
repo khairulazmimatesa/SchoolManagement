@@ -10,6 +10,7 @@ using SchoolManagement.Models;
 
 namespace SchoolManagement.Controllers
 {
+    [Authorize]
     public class CoursesController : Controller
     {
         private SchoolManagementDbEntities db = new SchoolManagementDbEntities();
