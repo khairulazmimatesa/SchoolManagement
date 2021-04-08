@@ -6,13 +6,27 @@
 }
 <h2>Create</h2>
 
-@using (Html.BeginForm()) {
+@using (Ajax.BeginForm("AddStudent","Enrollments",new AjaxOptions { 
+    HttpMethod="POST",
+    OnSuccess = "Added",
+    OnFailure = "Failure"
+
+
+})) {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
         <h4>Enrollment</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div id="failed" class="alert alert-danger" style="display: none;">
+            There was an error adding the Student to this course.
+        </div>
+
+        <div id="success" class="alert alert-success" style="display: none;">
+            Student Added Successfully.
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.CourseID, "CourseID", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -70,5 +84,28 @@
                 }
             });
         });
+
+        function Added(res) {
+            if (res.IsSuccess) {
+                $(function () {
+                    $("#failed").fadeOut('fast');
+                    $("#success").fadeIn('fast');
+                //  $('#success').append(res.Message);
+                })
+            } else {
+                $(function () {
+                    $("#success").fadeOut('fast');
+                    $("#failed").fadeIn('fast');
+                })
+            }
+        }
+
+        //function Failed(res) {
+        //    if (!res.isSuccess) {
+        //        $(function () {
+        //            $("#failed").fadeIn('fast');
+        //        })
+        //    }
+        //}
     </script>
 }
