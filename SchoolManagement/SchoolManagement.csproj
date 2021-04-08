@@ -203,6 +203,7 @@
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MetaData\CourseMetadata.cs" />
+    <Compile Include="Models\MetaData\EnrollmentMetadata.cs" />
     <Compile Include="Models\MetaData\StudentMetadata.cs" />
     <Compile Include="Models\SchoolmanagementDBModel.Context.cs">
       <AutoGen>True</AutoGen>
